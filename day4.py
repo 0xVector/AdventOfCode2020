@@ -1,13 +1,12 @@
 with open("inputs/day4.txt") as file:
     data = [line.strip() for line in file]
 
-data.append("")  # we need empty after last
+data.append("")  # we need empty line after last, and it gets .stripped()
 
-REQUIRED_ENTRIES = ("byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid")
+REQUIRED_ENTRIES = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
 
 # Parse data into dicts
-passports = []
-passport = {}
+passports, passport = [], {}
 
 for line in data:
     if line == "":
@@ -21,13 +20,11 @@ for line in data:
             field = field.split(":")
             passport[field[0]] = field[1]
 
-
 # Part 1
 part1 = 0
 for passport in passports:
     if all(val in passport for val in REQUIRED_ENTRIES):
         part1 += 1
-
 
 # Part 2
 part2 = 0
@@ -37,25 +34,24 @@ for passport in passports:
         byr = 2002 >= int(passport["byr"]) >= 1920
         iyr = 2020 >= int(passport["iyr"]) >= 2010
         eyr = 2030 >= int(passport["eyr"]) >= 2020
-        ecl = passport["ecl"] in ("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
-        hcl = passport["hcl"][0] == "#" and len(passport["hcl"][1:]) == 6
+        hcl = passport["hcl"].startswith("#") and len(passport["hcl"]) == 7
+        ecl = passport["ecl"] in {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"}
         pid = len(passport["pid"]) == 9
 
-        # Throw ValueError if not ints
-        int(passport["hcl"][1:], 16)
+        # Throw ValueError if not in correct format
+        int(passport["hcl"][1:], 16)  # Convert to int from hex
         int(passport["pid"])
 
         # hgt checks
-        unit = passport["hgt"][-2:]
-        value = int(passport["hgt"][:-2])
-        if unit == "cm":
-            hgt = "hgt" in passport and 193 >= value >= 150
-        elif unit == "in":
-            hgt = "hgt" in passport and 76 >= value >= 59
+        height = int(passport["hgt"][:-2])
+        if passport["hgt"].endswith("cm"):
+            hgt = 193 >= height >= 150
+
+        elif passport["hgt"].endswith("in"):
+            hgt = 76 >= height >= 59
 
         if all((byr, iyr, eyr, ecl, hcl, pid)):
             part2 += 1
-
 
     except (KeyError, ValueError):
         pass

@@ -34,8 +34,13 @@ for entry in data:
     first = password[pos1] == letter
     second = password[pos2] == letter
 
-    if (first and not second) or (second and not first):
+    # XOR
+    if first ^ second:
         part2 += 1
+
+    # Different options:
+    # (first and not second) or (second and not first)
+    # first != second
 
 print("Part 1:", part1)
 print("Part 2:", part2)

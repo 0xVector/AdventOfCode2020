@@ -1,9 +1,8 @@
 with open("inputs/day5.txt") as file:
     data = [line.strip() for line in file]
 
-seats = []
-
 # Part 1 ===
+seats = []
 for passport in data:
 
     lower = 0  # F
@@ -18,7 +17,7 @@ for passport in data:
             upper = int(mid)
 
         elif passport[i] == "B":
-            if not mid.is_integer():
+            if not mid.is_integer():  # Dividing odd numbers produces float, add 1 to truncate correctly
                 mid += 1
             lower = int(mid)
 
@@ -56,6 +55,7 @@ for i in range(len(seats)):
         break
 
     count += 1
+
 
 print("Part 1:", max(seats))
 print("Part 2:", count)

@@ -15,13 +15,8 @@ for line in data:
         group.append(line)
 
 
-# Part 1 ===
 part1 = sum(len(set.union(*map(set, group))) for group in groups)
-
-
-# Part 2 ===
 part2 = sum(len(set.intersection(*map(set, group))) for group in groups)
-
 
 print("Part 1:", part1)
 print("Part 2:", part2)
