@@ -42,5 +42,6 @@ for entry in data:
     # (first and not second) or (second and not first)
     # first != second
 
+
 print("Part 1:", part1)
 print("Part 2:", part2)

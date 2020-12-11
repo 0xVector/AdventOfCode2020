@@ -11,7 +11,7 @@ def check(bag_color):
             return True
 
 
-def dig2(bag_name, stack, count_):
+def dig(bag_name, stack, count_):
     global part2
 
     stack.append(count_)
@@ -24,7 +24,7 @@ def dig2(bag_name, stack, count_):
         return
 
     for bag_ in bags[bag_name]:
-        dig2(bag_[0], stack[:], bag_[1])
+        dig(bag_[0], stack[:], bag_[1])
 
 
 #  Parse data into a dict
@@ -56,7 +56,7 @@ for bag in bags:
 
 # Part 2 ===
 part2 = 0
-dig2("shiny gold", [], 1)
+dig("shiny gold", [], 1)
 part2 -= 1  # TODO FIX
 
 

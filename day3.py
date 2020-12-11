@@ -1,8 +1,6 @@
 with open("inputs/day3.txt") as file:
     grid = [line[0:-1] for line in file]
 
-width = len(grid[0])
-
 
 def check(right, bottom):
 
@@ -23,8 +21,11 @@ def check(right, bottom):
     return count
 
 
+width = len(grid[0])
+
 part1 = check(3, 1)
 part2 = check(1, 1) * check(3, 1) * check(5, 1) * check(7, 1) * check(1, 2)
+
 
 print("Part 1:", part1)
 print("Part 2:", part2)
