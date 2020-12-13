@@ -38,7 +38,7 @@ for entry in data:
     if first ^ second:
         part2 += 1
 
-    # Different options:
+    # Different options for XOR:
     # (first and not second) or (second and not first)
     # first != second
 
