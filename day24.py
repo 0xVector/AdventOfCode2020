@@ -2,16 +2,15 @@ with open("inputs/day24.txt") as file:
     data = [line.strip() for line in file]
 
 paths = [line.replace("nw", "0").replace("sw", "2").replace("se", "3").replace("ne", "5")
-             .replace("w", "1").replace("e", "4") for line in data]
+             .replace("w", "1").replace("e", "4") for line in data]  # Replace with numbers for easier processing
 
-MOVES = ((1, -1), (2, 0), (1, 1), (-1, 1), (-2, 0), (-1, -1))
+MOVES = ((1, -1), (2, 0), (1, 1), (-1, 1), (-2, 0), (-1, -1))  # Moves in all 6 directions
 SIZE = 215  # Adjust to speed things up. Too low and you get an IndexError.   Part 1: min 60   Part 2: min 215
 
-
-# Part 1 ===
 tiles = [["W" for j in range(SIZE)] for i in range(SIZE)]
 middle = (SIZE//2, SIZE//2)
 
+# Part 1 ===
 for path in paths:
 
     new_coord = middle
@@ -68,3 +67,4 @@ for row in tiles:
 
 print("Part 1:", part1)
 print("Part 2:", part2)
+assert part1 == 400 and part2 == 3768
