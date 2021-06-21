@@ -72,3 +72,4 @@ part2 = sum(memory.values())
 
 print("Part 1:", part1)
 print("Part 2:", part2)
+print(part1 == 9879607673316 and part2 == 3435342392262)

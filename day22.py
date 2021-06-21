@@ -85,3 +85,4 @@ for i, card in enumerate(reversed(win_deck), start=1):
 
 print("Part 1:", part1)
 print("Part 2:", part2)
+assert part1 == 30197 and part2 == 34031

@@ -106,3 +106,4 @@ for field_name in field_to_position:  # Calculate product of all departure field
 
 print("Part 1:", part1)
 print("Part 2:", part2)
+print(part1 == 19060 and part2 == 953713095011)

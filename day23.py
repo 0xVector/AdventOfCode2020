@@ -70,8 +70,9 @@ while len(part1) != len(labels) - 1:
 
 
 # Part 2 ===
-scrambled_cups = scramble(10 ** 7, 10 ** 6)
+scrambled_cups = scramble(10**7, 10**6)
 part2 = scrambled_cups[1].next.label * scrambled_cups[1].next.next.label
+
 
 print("Part 1:", part1)
 print("Part 2:", part2)
