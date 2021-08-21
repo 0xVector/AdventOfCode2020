@@ -1,12 +1,13 @@
 with open("inputs/day25.txt") as file:
     data = [line.strip() for line in file]
 
+prime = 20201227
 public_key_card = int(data[0])
 public_key_door = int(data[1])
 
 
 def transform(value, subject):
-    return (value * subject) % 20201227
+    return (value * subject) % prime
 
 
 # Part 1 ===
@@ -15,16 +16,12 @@ loop_size = 0
 result = 1
 while result != public_key_card:
     loop_size += 1
-    result = transform(result, 7)
+    result = (result * 7) % prime
 
 secret_key_card = loop_size
 
 # Calculate the encryption key
-result = 1
-for i in range(secret_key_card):
-    result = transform(result, public_key_door)
-
-part1 = result
+part1 = pow(public_key_door, secret_key_card, prime)
 
 
 # Part 2 ===
