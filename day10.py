@@ -5,17 +5,12 @@ with open("inputs/day10.txt") as file:
 diff1 = 0
 diff3 = 0
 
-data.insert(0, 0)  # power outlet
-device = max(data) + 3
-data.append(device)
+data.insert(0, 0)  # Power outlet
+data.append(max(data) + 3)  # Device
 data.sort()
 size = len(data)
 
-for i in range(size):
-
-    if i == size - 1:  # Last
-        break
-
+for i in range(size - 1):
     diff = data[i+1] - data[i]
 
     if diff == 1:
@@ -27,25 +22,14 @@ part1 = diff1 * diff3
 
 
 # Part 2 ===
-results = [1, 0, 0]
+count = {0: 1}  # Counts the ways to reach each adapter
 
-for i in range(1, size-1):  # From second element to the second last element
+for adapter in data[1:]:  # Skip the first adapter (charging outlet - 0)
+    # The number of ways to reach is the sum of the number of ways
+    # to reach the three previous adapters (those that exist)
+    count[adapter] = count.get(adapter-1, 0) + count.get(adapter-2, 0) + count.get(adapter-3, 0)
 
-    if data[i] - data[i-1] <= 3:
-        num = results[0]
-
-    if i - 2 >= 0:
-        if data[i] - data[i-2] <= 3:
-            num = sum(results[0:2])
-
-    if i - 3 >= 0:
-        if data[i] - data[i-3] <= 3:
-            num = sum(results)
-
-    results.insert(0, num)  # Add new result to the beginning
-    results.pop()  # Remove the oldest result
-
-part2 = results[0]  # Take last result
+part2 = count[data[-1]]  # Take the number of ways to reach the device (last adapter)
 
 
 print("Part 1:", part1)
