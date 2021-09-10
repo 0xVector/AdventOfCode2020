@@ -45,7 +45,7 @@ for i in range(1, size-1):  # From second element to the second last element
     results.insert(0, num)  # Add new result to the beginning
     results.pop()  # Remove the oldest result
 
-part2 = results[-1]  # Take last result
+part2 = results[0]  # Take last result
 
 
 print("Part 1:", part1)
